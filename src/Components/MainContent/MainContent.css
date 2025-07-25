@@ -1,0 +1,339 @@
+
+#MainContent-Wrapper {
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .9); /* adjust opacity here */
+  z-index: 0;
+}
+
+#MainContent-Wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* MAIN CONTENT SECTION 1 */
+#MainContent-1 {
+    display: flex;
+    /* background-image: url('../../../public/bg.jpeg');
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; */
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 60px;
+    flex-direction: column;
+    margin-top: -120px; 
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.highlight {
+    color: red;
+}
+
+.hero-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  margin: 10px;
+}
+
+.hero-button:hover {
+  background-color: black;
+  color: red;
+  transform: scale(1.2);
+  font-weight: bold;
+}
+
+#MainContent-2 {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  width: 100%;
+    
+}
+
+#MainContent-3 {
+    background-color: black;
+    height: 100vh;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#about-me {
+    /* background-image: url('../../../public/bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; */
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    flex: 1;
+}
+
+#about-me-split-cen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 20px;
+}
+
+.tech-grid-container {
+  text-align: center;
+  color: white;
+}
+
+.tech-header {
+  font-size: 32px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+#about-me-split-cen {
+    display: flex;
+    width: 80%;
+    /* border-color: blue;
+    border-style: solid; */
+    height: 100%;
+    justify-content: center;
+    font-size: 20px;
+}
+
+#projects {
+  width: 100%;
+  height: auto;
+}
+
+#Project-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#Project-Showcase-1,
+#Project-Showcase-2,
+#Project-Showcase-3 {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* ← important */
+  justify-content:end;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center; /* makes h3/p centered */
+}
+
+.Project-desc {
+  max-height: 300px;              /* limit the height */
+  overflow-y: auto;               /* enable vertical scroll */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: rgba(71, 71, 71, 0.2); /* optional for readability */
+  color: white;
+  font-size: 4rem;
+  line-height: 1.5;
+  white-space: pre-wrap;          /* preserves line breaks */
+}
+
+.Project-desc::-webkit-scrollbar {
+  width: 8px;
+}
+
+.Project-desc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.Project-desc::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.Project-desc::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
+#Project-Showcase-2 img {
+  max-width: 60%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+
+}
+
+#Project-Showcase-1 img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+#Project-Showcase-2 img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+#Project-Showcase-3 img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+
+#Battleship-pictures {
+  display: flex;
+  flex-direction: row;
+  max-height: 300px;              /* limit the height */
+  overflow-y: auto;               /* enable vertical scroll */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: rgba(53, 53, 53, 0.2); /* optional for readability */
+  color: white;
+  font-size: 4rem;
+  line-height: 1.5;
+  white-space: pre-wrap;   
+}
+
+.Project-desc {
+  font-size: 12px;
+}
+
+#resume {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+#blog {
+    display: flex;
+    width: 100%;
+    height: 50vh;  
+    justify-content: center;
+}
+.tech-stack {
+  width: 60px;
+  height: 60px;
+  fill:white;
+  transition: transform 0.4s ease, filter 0.4s ease, fill 0.4s ease;
+}
+
+
+.tech-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.8s ease-in-out forwards;
+  opacity: 0;  
+}
+
+.tech-label {
+  color: white;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#about-logo {
+  color: white;
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 60px auto 20px;
+  position: relative;
+  width: fit-content;
+  padding-bottom: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#about-logo:hover {
+  color: red;
+
+}
+
+#about-logo::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 3px;
+  background: white;
+  margin: 12px auto 0;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+a {
+  text-decoration: none;
+  
+}

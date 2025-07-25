@@ -1,0 +1,9 @@
+#Footer-Wrapper {
+    display: flex;
+    background-color:white;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
