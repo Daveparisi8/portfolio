@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fc9016f4.css",
+    "main.js": "/static/js/main.9050e3b2.js",
+    "static/js/453.ad7768ec.chunk.js": "/static/js/453.ad7768ec.chunk.js",
+    "static/media/pokepage.png": "/static/media/pokepage.25542bb7219740f38631.png",
+    "static/media/resume.png": "/static/media/resume.02f957401d1d3e0cfa9a.png",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.f54756da1f3d1b88887f.woff2",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.1f6bad931d92a0a52c45.woff2",
+    "static/media/pokelogin.png": "/static/media/pokelogin.2055b84639f521d9f8df.png",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.5632c43107f4d3fa4806.woff2",
+    "static/media/bank1.png": "/static/media/bank1.2c96d43f68e0f0d4a751.png",
+    "static/media/bank2.png": "/static/media/bank2.05a9de0613ad74085bb6.png",
+    "static/media/bs1.png": "/static/media/bs1.932caf3cba4fbb564dfe.png",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.24fc9d217708cb3f0362.woff2",
+    "static/media/githubpages.svg": "/static/media/githubpages.3b0aa33b0165c4733ab91135458d1538.svg",
+    "static/media/react.svg": "/static/media/react.8e63d418a6421cc2662e234ac8af7313.svg",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/python.svg": "/static/media/python.e146c98dc5517bd9c7e63d6f63a6a1df.svg",
+    "static/media/arcgis.svg": "/static/media/arcgis.bc17b6e2d91bb4bbadd284c4d284c534.svg",
+    "static/media/css.svg": "/static/media/css.f51283fc0aa2adef0d37111e55b23dda.svg",
+    "static/media/javascript.svg": "/static/media/javascript.5ee3c82fade3a5a9c98dc18702a4f717.svg",
+    "static/media/leetcode.svg": "/static/media/leetcode.ca8b82823ec3c4003b12a50a91dba5d9.svg",
+    "static/media/flask.svg": "/static/media/flask.fa9f9662234521d216fbff20e7c7aae9.svg",
+    "static/media/github.svg": "/static/media/github.3b21c250a99986431958daaa9246a45a.svg",
+    "index.html": "/index.html",
+    "static/media/git.svg": "/static/media/git.8ecdc3c556e1278611a7cfbb49c857a2.svg",
+    "static/media/html5.svg": "/static/media/html5.8e6289ed1eb0b9f348a463db8fa3e38c.svg",
+    "main.fc9016f4.css.map": "/static/css/main.fc9016f4.css.map",
+    "main.9050e3b2.js.map": "/static/js/main.9050e3b2.js.map",
+    "453.ad7768ec.chunk.js.map": "/static/js/453.ad7768ec.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc9016f4.css",
+    "static/js/main.9050e3b2.js"
+  ]
+}
