@@ -356,3 +356,61 @@ a {
   text-decoration: none;
   
 }
+
+/* Mobile: up to 600px */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  #about-me-split-cen {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  #about-me-personal {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  #about-me-personal img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Tablet: 601px to 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+  #about-me-split-cen {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  #about-me-personal {
+    margin-left: 0;
+    width: 80%;
+  }
+
+  #about-me-personal img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Desktop: 1025px and up */
+@media (min-width: 1025px) {
+  #about-me-split-cen {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #about-me-personal {
+    margin-left: 200px;
+    width: 400px;
+  }
+
+  #about-me-personal img {
+    max-width: 800px;
+  }
+}
