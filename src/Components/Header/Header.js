@@ -16,7 +16,7 @@ function Header() {
             <i className="fab fa-github"></i>
           </a>
           <a
-            href="https://www.linkedin.com/in/dave-parisi-2b7b19214"
+            href="https://www.linkedin.com/in/ParisiDave"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
