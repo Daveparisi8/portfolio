@@ -10,6 +10,7 @@ import { ReactComponent as GitHubPagesLogo } from '../../assets/githubpages.svg'
 import { ReactComponent as LeetCodeLogo } from '../../assets/leetcode.svg'
 import { ReactComponent as ArcGISLogo } from '../../assets/arcgis.svg'
 import { ReactComponent as PythonLogo } from '../../assets/python.svg'
+import parrot from '../../assets/parrot.jpeg';
 import pkmnlogin from '../../assets/pokelogin.png';
 import pkmnpage from '../../assets/pokepage.png';
 import bs1 from '../../assets/bs1.png';
@@ -129,7 +130,7 @@ function MainContent() {
                         </div>
                         <div id='about-me-split-cen'>
                             <p>
-                                I'm <span className="highlight">Dave</span>, a full-stack developer and current Master of Science in Computer Science candidate with <br/>
+                                <h1>Hi there! I'm <span className="highlight">Dave Parisi</span>.</h1><br/><br/><h2>Professional.</h2> I am a full-stack developer and current Master of Science in Computer Science candidate with <br/>
                                 a strong foundation in biology and biotechnology and software development.
                                 <br /><br />
                                 I enjoy building intuitive, responsive applications—from Flask-powered APIs to dynamic React<br/> 
@@ -139,7 +140,15 @@ function MainContent() {
                                 Currently, I'm working on a number of portfolio projects that showcase my versatility in full-stack<br/> 
                                 engineering, and I'm actively seeking opportunities where I can apply and grow my technical skills <br/>
                                 in impactful, real-world projects.
-                                </p>
+                                </p><div id='about-me-personal'>                            <p>
+                               <br/><br/><h2>Personal.</h2> When I’m not building apps or debugging code,<br/><br/> you’ll probably find me outdoors taking photos, or at the gym. I’m a big fan of hiking and camping—there’s 
+                               something about disconnecting in nature that helps recharge my creativity.<br/><br/> I also enjoy competitive fitness, which fuels my drive for continuous improvement and discipline, much like coding does.
+
+                              Gaming has always been a part of my life, from classic handhelds to modern consoles, and I enjoy how it blends storytelling, design, and problem-solving—skills that 
+                              translate well into software development. Most importantly, I value time with my family and strive to maintain a healthy balance between work, hobbies, and the people I care about most. <br/><br/><br/><br/>
+                              <img src={parrot} alt="Pokemnon Catcher Login Image" />
+
+                                </p></div>
                         </div>
                     </div>
                 </section>
