@@ -1,39 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const SpaceBackground = () => {
   const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
+  const vantaEffect = useRef(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (!vantaEffect && window.VANTA?.NET && vantaRef.current) {
-        setVantaEffect(
-          window.VANTA.NET({
-            el: vantaRef.current,
-            THREE: THREE,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.0,
-            minWidth: 200.0,
-            scale: 1.0,
-            scaleMobile: 1.0,
-            backgroundColor: 0x000000,
-            color: 0xffffff,
-            points: 10.0,
-            maxDistance: 25.0,
-            spacing: 15.0,
-          })
-        );
+      if (!vantaEffect.current && window.VANTA?.NET && vantaRef.current) {
+        vantaEffect.current = window.VANTA.NET({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          backgroundColor: 0x000000,
+          color: 0xffffff,
+          points: 10.0,
+          maxDistance: 25.0,
+          spacing: 15.0,
+        });
       }
     }, 300);
 
     return () => {
-      if (vantaEffect) vantaEffect.destroy();
       clearTimeout(timeout);
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
+      }
     };
-  }, [vantaEffect]);
+  }, []);
 
   return (
     <div

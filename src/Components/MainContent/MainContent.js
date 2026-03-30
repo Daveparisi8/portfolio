@@ -20,8 +20,8 @@ import bs2 from '../../assets/bs2.png';
 import bs3 from '../../assets/bs3.png';
 import bank1 from '../../assets/bank1.png';
 import bank2 from '../../assets/bank2.png';
-import resume from '../../assets/resume.png';
 import SpaceBackground from './SpaceBackground';
+import BlogSection from '../Blog/BlogSection';
 
 function MainContent() {
   const [activeAboutTab, setActiveAboutTab] = useState('professional');
@@ -77,9 +77,9 @@ function MainContent() {
           </div>
         </section>
 
-        <div id='MainContent-2' />
+        <div className='section-spacer' />
 
-        {/* ABOUT SECTION WITH TABS */}
+        {/* ABOUT SECTION WITH TABS */}}
         <section id="about-section">
           <div id='about-logo'>About Me</div>
 
@@ -224,9 +224,9 @@ function MainContent() {
           </div>
         </section>
 
-        <div id='MainContent-2' />
+        <div className='section-spacer' />
 
-        {/* PROJECTS SECTION WITH TABS */}
+        {/* PROJECTS SECTION WITH TABS */}}
         <section id="projects-section">
           <div id='about-logo'>Projects</div>
 
@@ -333,23 +333,23 @@ function MainContent() {
 </div>
         </section>
 
-        <div id='MainContent-2' />
+        <div className='section-spacer' />
 
-        {/* RESUME */}
+        {/* RESUME */}}
         <section id="resume-section">
           <div id='about-logo'>Live Resume</div>
           <div id='resume'>
-            {/* <img src={resume} alt="Resume" /> */}
+            <h1>Resume Coming Soon</h1>
           </div>
         </section>
 
-        <div id='MainContent-2' />
+        <div className='section-spacer' />
 
         {/* BLOG */}
         <section id="blog-section">
           <div id='about-logo'>Blog</div>
           <div id='blog'>
-            <h1>Blog Coming Soon</h1>
+            <BlogSection />
           </div>
         </section>
 

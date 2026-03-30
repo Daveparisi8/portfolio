@@ -1,5 +1,5 @@
 
-function Header() {
+function AppHeader() {
     return (
     <header>
         <title>Portfolio - Dave Parisi</title>
@@ -7,4 +7,4 @@ function Header() {
     )
 }
 
-export default Header
+export default AppHeader
