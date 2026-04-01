@@ -7,6 +7,7 @@ import API_BASE from "./api";
 function LandingPage({ username, onLogout }) {
     const [showConnectionModal, setShowConnectionModal] = useState(false);
     const [activeSection, setActiveSection] = useState(null);
+    const allowDbConfig = process.env.REACT_APP_ALLOW_DB_CONFIG === "true";
 
     const [dbStatus, setDbStatus] = useState({
         connected: false,
@@ -101,12 +102,14 @@ function LandingPage({ username, onLogout }) {
                     View All Movements
                 </button>
 
-                <button
-                    className="button-outline"
-                    onClick={() => setShowConnectionModal(true)}
-                >
-                    Connection Settings
-                </button>
+                {allowDbConfig && (
+                    <button
+                        className="button-outline"
+                        onClick={() => setShowConnectionModal(true)}
+                    >
+                        Connection Settings
+                    </button>
+                )}
                 <button className="button-outline" onClick={onLogout}>
                     Log Out
                 </button>
@@ -120,7 +123,7 @@ function LandingPage({ username, onLogout }) {
 
     {/*CONNECTION MODAL*/}
 
-            {showConnectionModal && (
+            {allowDbConfig && showConnectionModal && (
                 <ConnectionModal
                     isConnected={dbStatus.connected}
                     dbName={dbStatus.name}

@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from bll import FITNESS_BLL_MOVEMENTS, FITNESS_BLL_WORKOUTS
 import psycopg2
+import os
 from config import config
 
 #Test DB connection, retrieve all movements in table, update values, generate random workout module, 
@@ -61,6 +62,12 @@ def update_movement(movement_id):
 
 @app.route("/api/update-config", methods=["POST"])
 def update_config():
+    if os.getenv("FLASK_ENV", "production") == "production":
+        return jsonify({
+            "status": "error",
+            "message": "Runtime database configuration is disabled in production."
+        }), 403
+
     data = request.json or {}
     required_keys = ["host", "port", "database", "user", "password"]
 

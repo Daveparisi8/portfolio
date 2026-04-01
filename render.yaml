@@ -66,3 +66,5 @@ services:
         value: 20.11.1
       - key: REACT_APP_API_URL
         value: https://crossfit-api-ejys.onrender.com
+      - key: REACT_APP_ALLOW_DB_CONFIG
+        value: "false"
