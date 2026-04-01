@@ -1,0 +1,12 @@
+{
+  "admin": {
+    "username": "admin",
+    "password_hash": "e3726bbdde709f1f8a5665be8874db0cd99e23512d4e3f43aaa509712da75bc280b3f4ddfae6e6ffd2cf0dd941a444ad",
+    "pin": "0000"
+  },
+  "portfolio_guest": {
+    "username": "portfolio_guest",
+    "password_hash": "bf16d839a6b3828be43c736cfe361b54a6f0b701c6168362d7f3f6c7b9bea291e48ae83aa6584f2d2727c7d63e709c19",
+    "pin": "1111"
+  }
+}
