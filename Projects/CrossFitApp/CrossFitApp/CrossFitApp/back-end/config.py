@@ -1,7 +1,13 @@
 import os
 from urllib.parse import urlparse
 
-database_url = os.getenv("DATABASE_URL", "").strip()
+database_url = os.getenv("CROSSFIT_DATABASE_URL", "").strip()
+database_url_source = "CROSSFIT_DATABASE_URL"
+
+if not database_url:
+    database_url = os.getenv("DATABASE_URL", "").strip()
+    database_url_source = "DATABASE_URL"
+
 config_meta = {}
 
 if database_url:
@@ -23,7 +29,7 @@ if database_url:
         "sslmode": os.getenv("DB_SSLMODE", "require"),
     }
     config_meta = {
-        "source": "DATABASE_URL",
+        "source": database_url_source,
         "has_dsn_password": bool(parsed.password),
     }
 else:

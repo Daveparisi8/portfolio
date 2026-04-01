@@ -40,18 +40,8 @@ services:
         value: 3.11.9
       - key: FLASK_ENV
         value: production
-      - key: DB_HOST
-        value: aws-1-us-east-2.pooler.supabase.com
-      - key: DB_PORT
-        value: "6543"
-      - key: DB_USER
-        value: postgres.npvjfxreqalfekhcjiug
-      - key: DATABASE_URL
+      - key: CROSSFIT_DATABASE_URL
         sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_NAME
-        value: postgres
       - key: DB_SSLMODE
         value: require
 
