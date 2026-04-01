@@ -1,8 +1,21 @@
 import os
+from urllib.parse import urlparse
 
 database_url = os.getenv("DATABASE_URL", "").strip()
 
 if database_url:
+    parsed = urlparse(database_url)
+    if parsed.password is None or parsed.password == "":
+        raise ValueError(
+            "DATABASE_URL is set but does not include a password. "
+            "Use: postgresql://user:password@host:port/dbname"
+        )
+    if "[YOUR-PASSWORD]" in database_url or "YOUR_PASSWORD" in database_url:
+        raise ValueError(
+            "DATABASE_URL still contains a placeholder password. "
+            "Replace it with your real database password."
+        )
+
     # Prefer full DSN for hosted deployments to avoid split-env drift.
     config = {
         "dsn": database_url,
