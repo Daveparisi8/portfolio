@@ -3,7 +3,7 @@ from flask_cors import CORS
 from bll import FITNESS_BLL_MOVEMENTS, FITNESS_BLL_WORKOUTS
 import psycopg2
 import os
-from config import config
+from config import config, config_meta
 
 #Test DB connection, retrieve all movements in table, update values, generate random workout module, 
 
@@ -27,7 +27,8 @@ def test_connection():
     except Exception as e:
         return jsonify({
             "status": "error",
-            "message": str(e)
+            "message": str(e),
+            "config_meta": config_meta,
         }), 500
 
 @app.route("/api/movements", methods=["GET"])

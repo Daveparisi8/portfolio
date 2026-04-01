@@ -2,6 +2,7 @@ import os
 from urllib.parse import urlparse
 
 database_url = os.getenv("DATABASE_URL", "").strip()
+config_meta = {}
 
 if database_url:
     parsed = urlparse(database_url)
@@ -21,6 +22,10 @@ if database_url:
         "dsn": database_url,
         "sslmode": os.getenv("DB_SSLMODE", "require"),
     }
+    config_meta = {
+        "source": "DATABASE_URL",
+        "has_dsn_password": bool(parsed.password),
+    }
 else:
     config = {
         "user": os.getenv("DB_USER", "postgres"),
@@ -29,4 +34,8 @@ else:
         "host": os.getenv("DB_HOST", "127.0.0.1"),
         "port": int(os.getenv("DB_PORT", 5432)),
         "sslmode": os.getenv("DB_SSLMODE", "require"),
+    }
+    config_meta = {
+        "source": "DB_SPLIT_VARS",
+        "has_db_password": bool(config["password"]),
     }
