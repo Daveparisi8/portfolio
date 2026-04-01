@@ -255,6 +255,25 @@ function MainContent({ viewMode, onTrackLinkClick }) {
     },
   ];
 
+  const projects = [
+    {
+      title: 'Pokedex (React + FastAPI)',
+      subtitle: 'Full-stack Pokedex application with React frontend, Python/FastAPI backend, auth endpoints, and live Pokemon data workflows.',
+      stack: ['React', 'FastAPI', 'Python', 'REST API', 'PokeAPI'],
+      demoUrl: process.env.REACT_APP_POKEDEX_DEMO_URL || '',
+      demoTitle: 'Pokedex Production Demo',
+      repoUrl: 'https://github.com/Daveparisi8/pkmn',
+      repoLabel: 'View Pokedex Repository',
+      linkId: 'project-pokedex-fullstack-repo',
+    },
+    {
+      title: 'Project 2 (In Progress)',
+      subtitle: 'Second featured project will be added here next.',
+      stack: ['Coming Soon'],
+      demoUrl: '',
+    },
+  ];
+
   const resumeSections = [
     {
       category: 'Education',
@@ -405,6 +424,11 @@ function MainContent({ viewMode, onTrackLinkClick }) {
     if (typeof onTrackLinkClick === 'function') {
       onTrackLinkClick(linkId, label, url);
     }
+  };
+
+  const openTrackedExternalLink = (linkId, label, url) => {
+    track(linkId, label, url);
+    window.open(url, '_blank');
   };
 
   return (
@@ -592,6 +616,59 @@ function MainContent({ viewMode, onTrackLinkClick }) {
         {/* PROJECTS SECTION WITH TABS */}
         <section id="projects-section">
           <div id='about-logo'>Projects</div>
+          <div id="project-content">
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <h3>{project.title}</h3>
+                  <p className="Project-desc">{project.subtitle}</p>
+
+                  <div className="project-stack-list">
+                    {project.stack.map((item) => (
+                      <span className="project-stack-pill" key={`${project.title}-${item}`}>{item}</span>
+                    ))}
+                  </div>
+
+                  {project.demoUrl ? (
+                    <div className="project-demo-wrap">
+                      <iframe
+                        className="project-demo-frame"
+                        src={project.demoUrl}
+                        title={project.demoTitle || `${project.title} Demo`}
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="project-demo-placeholder">
+                      <p>Production demo URL not connected yet.</p>
+                    </div>
+                  )}
+
+                  <div className="project-actions-row">
+                    {project.demoUrl && (
+                      <button
+                        className="hero-button project-action"
+                        onClick={() => openTrackedExternalLink(`${project.linkId}-demo`, `${project.title} Demo`, project.demoUrl)}
+                      >
+                        Launch Live Demo
+                      </button>
+                    )}
+
+                    {project.repoUrl ? (
+                      <button
+                        className="hero-button project-action"
+                        onClick={() => openTrackedExternalLink(project.linkId, project.title, project.repoUrl)}
+                      >
+                        {project.repoLabel}
+                      </button>
+                    ) : (
+                      <p className="project-coming-soon">Details coming soon.</p>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
         <div className='section-spacer' />

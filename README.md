@@ -25,6 +25,10 @@ Before running, configure `server/.env` (or copy from `server/.env.example`) wit
 - `ADMIN_PASSWORD` 
 - `ADMIN_JWT_SECRET`
 
+Optional frontend env var (for live project demo embed):
+
+- `REACT_APP_POKEDEX_DEMO_URL`
+
 For local development, run both services in separate terminals:
 
 1. `npm run start:server`
