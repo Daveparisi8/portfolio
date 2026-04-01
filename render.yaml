@@ -41,11 +41,11 @@ services:
       - key: FLASK_ENV
         value: production
       - key: DB_HOST
-        value: db.npvjfxreqalfekhcjiug.supabase.co
+        value: aws-1-us-east-2.pooler.supabase.com
       - key: DB_PORT
-        value: "5432"
+        value: "6543"
       - key: DB_USER
-        value: postgres
+        value: postgres.npvjfxreqalfekhcjiug
       - key: DB_PASSWORD
         sync: false
       - key: DB_NAME

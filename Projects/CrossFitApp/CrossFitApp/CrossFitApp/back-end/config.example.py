@@ -1,8 +1,8 @@
 config = {
-    "user": "postgres",
+    "user": "postgres.npvjfxreqalfekhcjiug",
     "password": "CHANGEME",
     "dbname": "postgres",
-    "host": "db.npvjfxreqalfekhcjiug.supabase.co",
-    "port": 5432,
+    "host": "aws-1-us-east-2.pooler.supabase.com",
+    "port": 6543,
     "sslmode": "require",
 }
