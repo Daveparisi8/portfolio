@@ -23,6 +23,7 @@ import { ReactComponent as NativeInstrumentsLogo } from '../../assets/nativeinst
 import { ReactComponent as ExESSLogo } from '../../assets/exess.svg';
 import { ReactComponent as D365FOLogo } from '../../assets/d365fo.svg';
 import { ReactComponent as NavisionLogo } from '../../assets/navision.svg';
+import { ReactComponent as RenderLogo } from '../../assets/render.svg';
 
 import SpaceBackground from './SpaceBackground';
 import BlogSection from '../Blog/BlogSection';
@@ -56,6 +57,7 @@ function MainContent({ viewMode, onTrackLinkClick }) {
       items: [
         { label: 'MySQL', Icon: MySQLLogo, color: '#00618a' },
         { label: 'ArcGIS', Icon: ArcGISLogo, color: '#2a84ff' },
+        { label: 'Render', Icon: RenderLogo, color: '#46e3b7' },
         { label: 'GitHub Pages', Icon: GitHubPagesLogo, color: '#f0f6fc' },
       ],
     },
@@ -257,9 +259,9 @@ function MainContent({ viewMode, onTrackLinkClick }) {
 
   const projects = [
     {
-      title: 'Pokedex (React + FastAPI)',
-      subtitle: 'Full-stack Pokedex application with React frontend, Python/FastAPI backend, auth endpoints, and live Pokemon data workflows.',
-      stack: ['React', 'FastAPI', 'Python', 'REST API', 'PokeAPI'],
+      title: 'Pokedex (React + FastAPI), Deployed by Render',
+      subtitle: 'Interactive full-stack Pokedex with account login, version-aware encounter lookup, route filtering, movesets, and team analysis backed by live PokeAPI data. Some features may be disabled, delayed or slowed down as the spinup time can take up to 60 seconds for certain requests.',
+      stack: ['React', 'JavaScript', 'FastAPI', 'Python'],
       demoUrl: process.env.REACT_APP_POKEDEX_DEMO_URL || 'https://pokedex-frontend-ejys.onrender.com',
       demoTitle: 'Pokedex Production Demo',
       repoUrl: 'https://github.com/Daveparisi8/pkmn',
@@ -267,10 +269,14 @@ function MainContent({ viewMode, onTrackLinkClick }) {
       linkId: 'project-pokedex-fullstack-repo',
     },
     {
-      title: 'Project 2 (In Progress)',
-      subtitle: 'Second featured project will be added here next.',
-      stack: ['Coming Soon'],
-      demoUrl: '',
+      title: 'CrossFit Training Manager (React + Flask + MySQL)',
+      subtitle: 'Full-stack fitness application with runtime database configuration, exercise movement management, dynamic workout generation, and customizable training recommendations. Built as a course project for Database Principles.',
+      stack: ['React', 'JavaScript', 'Flask', 'Python', 'MySQL'],
+      demoUrl: process.env.REACT_APP_CROSSFIT_DEMO_URL || 'https://crossfit-frontend-ejys.onrender.com',
+      demoTitle: 'CrossFit App Production Demo',
+      repoUrl: 'https://github.com/Daveparisi8/CrossFitApp',
+      repoLabel: 'View CrossFit Repository',
+      linkId: 'project-crossfit-fullstack-repo',
     },
   ];
 
@@ -619,53 +625,55 @@ function MainContent({ viewMode, onTrackLinkClick }) {
           <div id="project-content">
             <div className="projects-grid">
               {projects.map((project) => (
-                <article className="project-card" key={project.title}>
-                  <h3>{project.title}</h3>
-                  <p className="Project-desc">{project.subtitle}</p>
+                <details className="project-dropdown" key={project.title}>
+                  <summary>{project.title}</summary>
+                  <div className="project-card project-card-featured">
+                    <p className="Project-desc">{project.subtitle}</p>
 
-                  <div className="project-stack-list">
-                    {project.stack.map((item) => (
-                      <span className="project-stack-pill" key={`${project.title}-${item}`}>{item}</span>
-                    ))}
-                  </div>
-
-                  {project.demoUrl ? (
-                    <div className="project-demo-wrap">
-                      <iframe
-                        className="project-demo-frame"
-                        src={project.demoUrl}
-                        title={project.demoTitle || `${project.title} Demo`}
-                        loading="lazy"
-                      />
+                    <div className="project-stack-list">
+                      {project.stack.map((item) => (
+                        <span className="project-stack-pill" key={`${project.title}-${item}`}>{item}</span>
+                      ))}
                     </div>
-                  ) : (
-                    <div className="project-demo-placeholder">
-                      <p>Production demo URL not connected yet.</p>
-                    </div>
-                  )}
 
-                  <div className="project-actions-row">
-                    {project.demoUrl && (
-                      <button
-                        className="hero-button project-action"
-                        onClick={() => openTrackedExternalLink(`${project.linkId}-demo`, `${project.title} Demo`, project.demoUrl)}
-                      >
-                        Launch Live Demo
-                      </button>
-                    )}
-
-                    {project.repoUrl ? (
-                      <button
-                        className="hero-button project-action"
-                        onClick={() => openTrackedExternalLink(project.linkId, project.title, project.repoUrl)}
-                      >
-                        {project.repoLabel}
-                      </button>
+                    {project.demoUrl ? (
+                      <div className="project-demo-wrap">
+                        <iframe
+                          className="project-demo-frame"
+                          src={project.demoUrl}
+                          title={project.demoTitle || `${project.title} Demo`}
+                          loading="lazy"
+                        />
+                      </div>
                     ) : (
-                      <p className="project-coming-soon">Details coming soon.</p>
+                      <div className="project-demo-placeholder">
+                        <p>Project preview coming soon.</p>
+                      </div>
                     )}
+
+                    <div className="project-actions-row">
+                      {project.demoUrl && (
+                        <button
+                          className="hero-button project-action"
+                          onClick={() => openTrackedExternalLink(`${project.linkId}-demo`, `${project.title} Demo`, project.demoUrl)}
+                        >
+                          Launch Full Screen Demo
+                        </button>
+                      )}
+
+                      {project.repoUrl ? (
+                        <button
+                          className="hero-button project-action"
+                          onClick={() => openTrackedExternalLink(project.linkId, project.title, project.repoUrl)}
+                        >
+                          {project.repoLabel}
+                        </button>
+                      ) : (
+                        <p className="project-coming-soon">Details coming soon.</p>
+                      )}
+                    </div>
                   </div>
-                </article>
+                </details>
               ))}
             </div>
           </div>

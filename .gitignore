@@ -26,6 +26,11 @@ Projects/Pokedex/**/__pycache__/
 Projects/Pokedex/holdover/
 Projects/Pokedex/json/
 
+# CrossFit App nested project
+Projects/CrossFitApp/.venv/
+Projects/CrossFitApp/**/__pycache__/
+Projects/CrossFitApp/**/node_modules/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

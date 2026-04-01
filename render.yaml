@@ -26,3 +26,43 @@ services:
         value: 20.11.1
       - key: REACT_APP_API_URL
         value: https://pokedex-api-ejys.onrender.com
+
+  - type: web
+    name: crossfit-api
+    runtime: python
+    plan: free
+    rootDir: Projects/CrossFitApp/CrossFitApp/CrossFitApp/back-end
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: FLASK_ENV
+        value: production
+      - key: DB_HOST
+        value: db.npvjfxreqalfekhcjiug.supabase.co
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: postgres
+      - key: DB_SSLMODE
+        value: require
+
+  - type: web
+    name: crossfit-frontend
+    runtime: node
+    plan: free
+    rootDir: Projects/CrossFitApp/CrossFitApp/CrossFitApp
+    buildCommand: npm ci && npm run build
+    startCommand: npx serve -s build -l $PORT
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      - key: REACT_APP_API_URL
+        value: https://crossfit-api-ejys.onrender.com
