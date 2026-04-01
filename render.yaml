@@ -2,8 +2,8 @@ services:
   - type: web
     name: pokedex-api
     runtime: python
+    plan: free
     rootDir: Projects/Pokedex/backend
-    plan: free 
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     autoDeploy: true
@@ -11,15 +11,18 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: CORS_ORIGINS
-        value: https://your-pokedex-frontend.onrender.com
+        value: https://pokedex-frontend.onrender.com
 
-  - type: static  
+  - type: web
     name: pokedex-frontend
+    runtime: node
+    plan: free
     rootDir: Projects/Pokedex/frontend/pokedex-react
-    plan: free 
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    startCommand: npx serve -s build -l $PORT
     autoDeploy: true
     envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
       - key: REACT_APP_API_URL
-        value: https://your-pokedex-api.onrender.com
+        value: https://pokedex-api.onrender.com
