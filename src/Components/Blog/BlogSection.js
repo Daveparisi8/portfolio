@@ -4,10 +4,20 @@ import remarkGfm from 'remark-gfm';
 import posts from '../../data/posts';
 import './BlogSection.css';
 
-function BlogSection() {
+function BlogSection({ onTrackLinkClick }) {
   const [selectedPost, setSelectedPost] = useState(null); // { meta, content } | null
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const handleTrackedLinkClick = (href, linkText) => {
+    if (typeof onTrackLinkClick !== 'function' || !href) {
+      return;
+    }
+
+    const linkId = `blog-link-${href}`;
+    const label = linkText || href;
+    onTrackLinkClick(linkId, label, href);
+  };
 
   function openPost(meta) {
     setLoading(true);
@@ -55,7 +65,23 @@ function BlogSection() {
           <span className="blog-post-date">{selectedPost.meta.date}</span>
         </div>
         <div className="blog-post-content">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ href, children, ...props }) => {
+                const text = Array.isArray(children) ? children.join('') : String(children || '');
+                return (
+                  <a
+                    {...props}
+                    href={href}
+                    onClick={() => handleTrackedLinkClick(href, text)}
+                  >
+                    {children}
+                  </a>
+                );
+              },
+            }}
+          >
             {selectedPost.content}
           </ReactMarkdown>
         </div>

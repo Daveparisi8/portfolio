@@ -14,6 +14,38 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm run start:server`
+
+Runs the authentication API used for administrator login.\
+Server defaults to [http://localhost:4000](http://localhost:4000).
+
+Before running, configure `server/.env` (or copy from `server/.env.example`) with:
+
+- `ADMIN_EMAIL`
+- `ADMIN_PASSWORD` 
+- `ADMIN_JWT_SECRET`
+
+For local development, run both services in separate terminals:
+
+1. `npm run start:server`
+2. `npm start`
+
+## Administrator Analytics Dashboard
+
+When you log in as Administrator, the portfolio content is hidden and replaced with an analytics dashboard.
+
+Tracked metrics:
+
+- Unique visits to Portfolio Review mode
+- Unique clicks per tracked site link
+- Total clicks per tracked site link
+
+API routes:
+
+- `POST /api/analytics/visit`
+- `POST /api/analytics/link-click`
+- `GET /api/admin/analytics` (requires admin session)
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

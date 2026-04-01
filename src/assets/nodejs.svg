@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="nodeTitle">
+  <title id="nodeTitle">Node.js</title>
+  <polygon points="60,8 103,33 103,87 60,112 17,87 17,33" fill="#3c873a" />
+  <text x="60" y="69" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#ffffff">Node</text>
+</svg>

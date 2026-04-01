@@ -1,0 +1,110 @@
+.admin-dashboard-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 15%, rgba(255, 72, 72, 0.2), transparent 30%),
+    radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.14), transparent 35%),
+    #060606;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-dashboard-card {
+  width: min(1100px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 24px;
+  background: rgba(14, 14, 14, 0.9);
+  color: #fff;
+}
+
+.admin-dashboard-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ff8080;
+  font-size: 0.72rem;
+}
+
+.admin-dashboard-card h1 {
+  margin: 8px 0 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.admin-refresh-button {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.admin-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-dashboard-error {
+  margin-top: 12px;
+  color: #ff9a9a;
+}
+
+.admin-metric-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.admin-metric-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-metric-label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+}
+
+.admin-metric-value {
+  margin: 8px 0 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.admin-dashboard-card h2 {
+  margin-top: 24px;
+}
+
+.admin-table-scroll {
+  overflow-x: auto;
+}
+
+.admin-analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-analytics-table th,
+.admin-analytics-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: left;
+  padding: 10px 8px;
+  font-size: 0.92rem;
+}
+
+.admin-empty {
+  color: rgba(255, 255, 255, 0.7);
+}

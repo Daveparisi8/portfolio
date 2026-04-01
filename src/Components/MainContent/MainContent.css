@@ -18,6 +18,18 @@ html {
   z-index: 2;
 }
 
+.admin-visit-banner {
+  max-width: 1080px;
+  margin: 18px auto 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 94, 94, 0.45);
+  border-radius: 12px;
+  background: rgba(255, 94, 94, 0.14);
+  color: #ffdede;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -119,18 +131,53 @@ html {
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, minmax(78px, 1fr));
+  gap: 18px;
   justify-items: center;
-  max-width: 800px;
+  max-width: 100%;
   width: 100%;
 }
 
+.tech-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.tech-group {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 14px;
+}
+
+.tech-group-title {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .tech-stack {
-  width: 60px;
-  height: 60px;
-  fill: white;
+  width: 54px;
+  height: 54px;
+  fill: currentColor;
+  color: var(--tech-color, #ffffff);
   transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.tech-icon-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--tech-color, #ffffff) 50%, #ffffff 16%);
+  background: color-mix(in srgb, var(--tech-color, #ffffff) 18%, #0f0f0f 82%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 .tech-icon-wrapper {
@@ -144,8 +191,8 @@ html {
 }
 
 .tech-label {
-  color: white;
-  font-size: 0.8rem;
+  color: var(--tech-color, #ffffff);
+  font-size: 0.76rem;
   margin-top: 5px;
   text-align: center;
 }
@@ -206,6 +253,58 @@ html {
   animation: fadeInUp 0.4s ease;
 }
 
+.engineering-subtitle {
+  margin: 0 0 16px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.engineering-dropdowns {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.engineering-dropdown {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.62);
+  overflow: hidden;
+}
+
+.engineering-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.74);
+}
+
+.engineering-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.engineering-dropdown summary::after {
+  content: '+';
+  float: right;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.engineering-dropdown[open] summary::after {
+  content: '-';
+}
+
+.engineering-list {
+  margin: 0;
+  padding: 10px 18px 16px 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.engineering-list li {
+  margin: 6px 0;
+  font-size: 0.9rem;
+}
+
 /* ========================= */
 /* PROJECT TABS (TAB-LIKE STYLE)
 /* ========================= */
@@ -263,11 +362,180 @@ html {
 /* ========================= */
 
 #resume {
-  display: flex;
   width: 100%;
-  height: 50vh;
-  align-items: center;
-  justify-content: center;
+  min-height: 50vh;
+}
+
+.resume-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.resume-intro {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.resume-dropdowns {
+  display: grid;
+  gap: 12px;
+}
+
+.resume-dropdown {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.62);
+  overflow: hidden;
+}
+
+.resume-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.74);
+}
+
+.resume-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.resume-dropdown summary::after {
+  content: '+';
+  float: right;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.resume-dropdown[open] summary::after {
+  content: '-';
+}
+
+.resume-section-content {
+  padding: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.resume-entry {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.resume-entry-header h3 {
+  margin: 0;
+}
+
+.resume-entry-header span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+}
+
+.resume-entry-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.resume-entry-location {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.88rem;
+}
+
+.resume-degree,
+.resume-concentration,
+.resume-subheading {
+  margin: 8px 0 0;
+}
+
+.resume-concentration {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.resume-subheading {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.resume-courses-dropdown {
+  margin-top: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.resume-courses-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.resume-courses-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.resume-courses-dropdown summary::after {
+  content: '+';
+  float: right;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.resume-courses-dropdown[open] summary::after {
+  content: '-';
+}
+
+.resume-course-list {
+  margin: 0;
+  padding: 0 20px 12px 28px;
+}
+
+.resume-course-list li {
+  margin: 4px 0;
+}
+
+.resume-work-list {
+  margin-top: 8px;
+}
+
+.resume-highlight-list {
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.resume-highlight-item {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.54);
+}
+
+.resume-highlight-item p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+.resume-highlight-item .resume-subheading {
+  margin-top: 8px;
+}
+
+.resume-highlight-title {
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 #blog {

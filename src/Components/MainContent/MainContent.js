@@ -11,21 +11,401 @@ import { ReactComponent as GitHubPagesLogo } from '../../assets/githubpages.svg'
 import { ReactComponent as LeetCodeLogo } from '../../assets/leetcode.svg';
 import { ReactComponent as ArcGISLogo } from '../../assets/arcgis.svg';
 import { ReactComponent as PythonLogo } from '../../assets/python.svg';
+import { ReactComponent as MySQLLogo } from '../../assets/mysql.svg';
+import { ReactComponent as GodotLogo } from '../../assets/godot.svg';
+import { ReactComponent as JavaLogo } from '../../assets/java.svg';
+import { ReactComponent as CppLogo } from '../../assets/cpp.svg';
+import { ReactComponent as GitLabLogo } from '../../assets/gitlab.svg';
+import { ReactComponent as NodeLogo } from '../../assets/nodejs.svg';
+import { ReactComponent as ProToolsLogo } from '../../assets/protools.svg';
+import { ReactComponent as ReaperLogo } from '../../assets/reaper.svg';
+import { ReactComponent as NativeInstrumentsLogo } from '../../assets/nativeinstruments.svg';
+import { ReactComponent as ExESSLogo } from '../../assets/exess.svg';
+import { ReactComponent as D365FOLogo } from '../../assets/d365fo.svg';
+import { ReactComponent as NavisionLogo } from '../../assets/navision.svg';
 
-import parrot from '../../assets/parrot.jpeg';
-import pkmnlogin from '../../assets/pokelogin.png';
-import pkmnpage from '../../assets/pokepage.png';
-import bs1 from '../../assets/bs1.png';
-import bs2 from '../../assets/bs2.png';
-import bs3 from '../../assets/bs3.png';
-import bank1 from '../../assets/bank1.png';
-import bank2 from '../../assets/bank2.png';
 import SpaceBackground from './SpaceBackground';
 import BlogSection from '../Blog/BlogSection';
 
-function MainContent() {
+function MainContent({ viewMode, onTrackLinkClick }) {
   const [activeAboutTab, setActiveAboutTab] = useState('professional');
-  const [activeProjectTab, setActiveProjectTab] = useState('banking');
+
+  const technologyGroups = [
+    {
+      category: 'Languages',
+      items: [
+        { label: 'Python', Icon: PythonLogo, color: '#3776ab' },
+        { label: 'Java', Icon: JavaLogo, color: '#f89820' },
+        { label: 'C++', Icon: CppLogo, color: '#00599c' },
+        { label: 'JavaScript', Icon: JavaScriptLogo, color: '#f7df1e' },
+        { label: 'HTML5', Icon: HTML5Logo, color: '#e34f26' },
+        { label: 'CSS', Icon: CSSLogo, color: '#1572b6' },
+      ],
+    },
+    {
+      category: 'Frameworks and Engines',
+      items: [
+        { label: 'React', Icon: ReactLogo, color: '#61dafb' },
+        { label: 'Flask', Icon: FlaskLogo, color: '#f5f5f5' },
+        { label: 'Node.js', Icon: NodeLogo, color: '#3c873a' },
+        { label: 'Godot', Icon: GodotLogo, color: '#4e95d8' },
+      ],
+    },
+    {
+      category: 'Data and Platforms',
+      items: [
+        { label: 'MySQL', Icon: MySQLLogo, color: '#00618a' },
+        { label: 'ArcGIS', Icon: ArcGISLogo, color: '#2a84ff' },
+        { label: 'GitHub Pages', Icon: GitHubPagesLogo, color: '#f0f6fc' },
+      ],
+    },
+    {
+      category: 'Developer Tools',
+      items: [
+        { label: 'Git', Icon: GitLogo, color: '#f05033' },
+        { label: 'GitHub', Icon: GitHubLogo, color: '#f0f6fc' },
+        { label: 'GitLab', Icon: GitLabLogo, color: '#fc6d26' },
+        { label: 'LeetCode', Icon: LeetCodeLogo, color: '#ffa116' },
+      ],
+    },
+    {
+      category: 'Audio Production Tools',
+      items: [
+        { label: 'Pro Tools', Icon: ProToolsLogo, color: '#7a56ff' },
+        { label: 'REAPER', Icon: ReaperLogo, color: '#f18f01' },
+        { label: 'Native Instruments', Icon: NativeInstrumentsLogo, color: '#ffffff' },
+      ],
+    },
+    {
+      category: 'Enterprise Systems',
+      items: [
+        { label: "Lisam ExESS", Icon: ExESSLogo, color: '#8bd3ff' },
+        { label: 'D365 F&O', Icon: D365FOLogo, color: '#61b0ff' },
+        { label: 'Microsoft Navision', Icon: NavisionLogo, color: '#9dc3e6' },
+      ],
+    },
+  ];
+
+  const engineeringFoundations = [
+    {
+      category: 'Core Software Engineering',
+      skills: [
+        'Object-Oriented Design (OOP)',
+        'Data Structures and Algorithms',
+        'Problem Decomposition',
+        'Code Refactoring and Maintainability',
+        'Debugging and Troubleshooting',
+        'Test-Driven Development (TDD)',
+        'Version Control (Git and GitHub)',
+      ],
+    },
+    {
+      category: 'Backend Development',
+      skills: [
+        'RESTful API Design',
+        'Authentication and Authorization (Session-based, Token-based/JWT concepts)',
+        'CRUD Operations',
+        'Database Design and Schema Modeling',
+        'JSON Data Handling',
+        'Input Validation and Error Handling',
+        'Environment-Based Configuration (.env)',
+        'Logging and Basic Monitoring',
+      ],
+    },
+    {
+      category: 'Databases and Data Handling',
+      skills: [
+        'Relational Databases (SQL fundamentals)',
+        'File-Based Storage (JSON persistence)',
+        'Data Modeling and Relationships',
+        'Query Optimization (basic)',
+      ],
+    },
+    {
+      category: 'Frontend Development',
+      skills: [
+        'React (Component-based architecture)',
+        'State Management (useState, props)',
+        'Form Handling and Validation',
+        'API Integration (fetch / axios)',
+        'Responsive UI Design (basic CSS)',
+      ],
+    },
+    {
+      category: 'Full-Stack Development',
+      skills: [
+        'Frontend and Backend Integration',
+        'API Consumption and Data Flow',
+        'Separation of Concerns',
+        'Modular Architecture',
+        'Project Structuring (frontend/backend split)',
+      ],
+    },
+    {
+      category: 'Python Development',
+      skills: [
+        'CLI Application Development',
+        'File I/O Operations',
+        'Working with APIs',
+        'Virtual Environments',
+        'Dependency Management (requirements.txt)',
+      ],
+    },
+    {
+      category: 'Tools and Workflow',
+      skills: [
+        'Git (branching, merging, rebasing basics)',
+        'GitHub (repos, collaboration, version tracking)',
+        'Postman (API testing and debugging)',
+        'Command Line / Terminal',
+        'VS Code / IDE usage',
+      ],
+    },
+    {
+      category: 'Project-Specific Skills',
+      skills: [
+        'Game Logic Design (state, mechanics)',
+        'Data-Driven Design (JSON-based systems)',
+        'Asset Management',
+        'Application Architecture Design',
+        'Feature Planning and Iteration',
+      ],
+    },
+    {
+      category: 'Soft Engineering Skills',
+      skills: [
+        'Technical Problem Solving',
+        'Independent Learning',
+        'Debugging Complex Systems',
+        'Breaking Down Ambiguous Problems',
+      ],
+    },
+    {
+      category: 'Optional Enhancements',
+      skills: [
+        'Basic Security Practices',
+        'API Testing Strategies',
+        'Code Documentation',
+        'Agile / Iterative Development',
+      ],
+    },
+    {
+      category: 'Sound Design Integration (Game Development)',
+      skills: [
+        'Integrated sound effects and music into gameplay systems to enhance player feedback and immersion',
+        'Implemented event-driven audio (triggering sounds on actions like attacks, menu navigation, and collisions)',
+        'Designed and edited audio assets using DAW tools (for example, REAPER) for in-game use',
+        'Managed audio assets (SFX, music, ambient sounds) with organized file structures for scalability',
+        'Controlled audio playback (volume, looping, layering) based on game state and user interaction',
+        'Synced sound effects with animations and timing systems for responsive gameplay feel',
+        'Optimized audio files for performance (compression, format selection) to reduce memory usage',
+        'Implemented basic audio mixing and balancing to maintain clarity across multiple sound sources',
+        'Debugged and tested audio triggers to ensure consistency across gameplay scenarios',
+      ],
+    },
+  ];
+
+  const managementLeadership = [
+    {
+      category: 'Core Management',
+      skills: [
+        'Team Leadership and Supervision',
+        'Cross-Functional Collaboration',
+        'Task Prioritization and Delegation',
+        'Performance Monitoring and Accountability',
+        'Conflict Resolution',
+      ],
+    },
+    {
+      category: 'Process and Operations',
+      skills: [
+        'Process Improvement (Lean Six Sigma Yellow Belt)',
+        'Workflow Optimization',
+        'Standard Operating Procedures (SOPs)',
+        'Quality Control and Compliance (cGMP experience)',
+        'Root Cause Analysis',
+      ],
+    },
+    {
+      category: 'Project and Execution',
+      skills: [
+        'Project Planning and Coordination',
+        'Agile / Iterative Development Mindset',
+        'Time Management and Deadline Tracking',
+        'Risk Identification and Mitigation',
+        'Resource Allocation',
+      ],
+    },
+    {
+      category: 'Communication',
+      skills: [
+        'Technical Communication',
+        'Stakeholder Communication',
+        'Documentation and Reporting',
+        'Training and Mentorship',
+      ],
+    },
+    {
+      category: 'Analytical Thinking',
+      skills: [
+        'Data-Driven Decision Making',
+        'Problem Analysis and Troubleshooting',
+        'Continuous Improvement Mindset',
+      ],
+    },
+  ];
+
+  const resumeSections = [
+    {
+      category: 'Education',
+      items: [
+        {
+          school: 'Merrimack College',
+          location: 'North Andover, MA',
+          date: '2026',
+          degree: 'Master of Science in Computer Science',
+          concentration: 'Concentration in Software Engineering',
+          courses: [
+            'Foundations of Programming',
+            'Algorithms and Discrete Structures',
+            'Advanced Algorithms',
+            'Language, Automata and Decidability',
+            'Database Principles',
+            'Software Design and Documentation',
+            'System and Languages Survey',
+            'Advanced Programming Concepts',
+          ],
+        },
+        {
+          school: 'Bridgewater State University',
+          location: 'Bridgewater, MA',
+          date: '2018',
+          degree: 'Bachelor of Science in Biology',
+          undergraduateHighlights: [
+            {
+              title: 'Undergraduate Research Associate',
+              institution: 'Bridgewater State University',
+              timeframe: '2016-2018',
+              description:
+                'Conducted guided research under Conservation Biologist Dr. Thilina Surasinghe surveying local reptile species, followed by analysis and drafting scientific results.',
+            },
+            {
+              title: 'ATP Award Summer Research Grant Recipient',
+              institution: 'Bridgewater State University',
+              timeframe: '2017',
+              description:
+                'Conducted independent research funded by BSU through a selective application process.',
+              presentations: [
+                'Northeast Natural History Conference - Burlington, VT (2017)',
+                'The Wildlife Society Conference - Cleveland, OH (2018)',
+              ],
+            },
+            {
+              title: 'Officer, National Honor Society (BSU Chapter)',
+              institution: 'Bridgewater State University',
+              timeframe: '2018',
+              description:
+                'Served as Secretary officer of the local chapter of the National Biological Honor Society (3B).',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Work Experience',
+      items: [
+        {
+          company: 'Cambridge Isotope Laboratories',
+          location: 'Andover, MA',
+          title: 'Documentation Manager',
+          date: '2023-2026',
+          highlights: [
+            'Directed an 8-person documentation team in producing and managing compliant customer deliverables (SDSs, COAs) via structured workflows and internal systems, prioritizing accuracy, version control, and deadline adherence.',
+            'Partnered cross-functionally with supply chain and quality stakeholders to streamline document processes, ensuring regulatory compliance and traceability.',
+          ],
+        },
+        {
+          company: 'Element Materials Technology',
+          location: 'Acton, MA',
+          title: 'Environmental Monitoring Supervisor',
+          date: '2019-2023',
+          highlights: [
+            'Supervised a group of eight technicians conducting environmental monitoring of GMP-controlled spaces, sterile facilities, and USP <797>-compliant facilities in a microbiology contract-lab environment.',
+            'Conducted initial review of certificates of analysis prior to quality review, ensuring quality and accuracy.',
+            'Managed daily technician client schedules.',
+            'Drafted and controlled all client-specific submittal forms used daily by technicians.',
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Early Career',
+      items: [
+        {
+          company: 'Bose Corporation / Randstad',
+          location: 'Westborough, MA',
+          title: 'Sales and Technical Solutions Level II Specialist',
+          date: '2012-2016',
+          highlights: [
+            'Hired through Bose\'s temp-to-hire HR organization, Randstad, after a 6-month probation period.',
+            'Provided technical product troubleshooting in a call-center environment, averaging 50-80 calls per day.',
+            'Set up new orders, provided status updates to customers, communicated with adjacent departments regarding customer feedback, maintained proper notation of interactions, and modified billing information.',
+            'Sold Bose products and provided customer service, including account modifications, in an inbound call center.',
+          ],
+        },
+        {
+          company: 'Target',
+          location: 'Hanover, MA',
+          title: 'Guest Services Representative',
+          date: '2010-2012',
+          highlights: [
+            'Provided professional customer service for Guest Services and the Photo departments.',
+            'Covered front-end manager breaks.',
+            'Handled damaged products and hazardous materials properly during disposal.',
+          ],
+        },
+        {
+          company: 'D&B Logistics, Inc.',
+          location: 'Hanover, MA',
+          title: 'Customer Service Representative',
+          date: '2007-2010',
+          highlights: [
+            'Answered and directed inbound phone calls.',
+            'Assisted with opening mail and sorting freight bills.',
+            'Converted freight bills to digital storage by scanning.',
+            'Performed maintenance on office equipment (computers, printers, and related hardware).',
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Certifications',
+      items: [
+        {
+          certification: 'Six Sigma Yellow Belt',
+          date: '2023',
+        },
+        {
+          certification: 'ISO 9001 and 9000 Internal Auditor',
+          date: '2023',
+        },
+        {
+          certification: 'OSHA-10',
+          date: '2022',
+        },
+        {
+          certification: 'Safe Driving',
+          date: '2021',
+        },
+      ],
+    },
+  ];
+
+  const track = (linkId, label, url) => {
+    if (typeof onTrackLinkClick === 'function') {
+      onTrackLinkClick(linkId, label, url);
+    }
+  };
 
   return (
     <div>
@@ -33,6 +413,12 @@ function MainContent() {
       <div className='overlay' />
 
       <div id='MainContent-Wrapper'>
+        {viewMode === 'administrator' && (
+          <div className="admin-visit-banner">
+            Administrator mode selected. Content is shown in portfolio context; admin controls are not exposed on this site.
+          </div>
+        )}
+
         {/* HERO */}
         <section id='hero'>
           <div id='MainContent-1'>
@@ -40,7 +426,7 @@ function MainContent() {
               <p>
                 Hello, I'm <span className="highlight">Dave</span>.
                 <br /><br />
-                I am a full-stack developer<br />
+                I am a Software Engineer<br />
                 and MSCS candidate.
               </p>
             </div>
@@ -48,28 +434,40 @@ function MainContent() {
             <div id='view-project'>
               <button
                 className="hero-button"
-                onClick={() => document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  track('hero-about', 'Hero About', '#about-section');
+                  document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 About
               </button>
 
               <button
                 className="hero-button"
-                onClick={() => document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  track('hero-projects', 'Hero Projects', '#projects-section');
+                  document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Projects
               </button>
 
               <button
                 className="hero-button"
-                onClick={() => document.getElementById('resume-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  track('hero-resume', 'Hero Resume', '#resume-section');
+                  document.getElementById('resume-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
-                Resume
+                Education and Work History
               </button>
 
               <button
                 className="hero-button"
-                onClick={() => document.getElementById('blog-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  track('hero-blog', 'Hero Blog', '#blog-section');
+                  document.getElementById('blog-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Blog
               </button>
@@ -79,7 +477,7 @@ function MainContent() {
 
         <div className='section-spacer' />
 
-        {/* ABOUT SECTION WITH TABS */}}
+        {/* ABOUT SECTION WITH TABS */}
         <section id="about-section">
           <div id='about-logo'>About Me</div>
 
@@ -93,13 +491,6 @@ function MainContent() {
             </button>
 
             <button
-              className={`tab-button ${activeAboutTab === 'opensource' ? 'active' : ''}`}
-              onClick={() => setActiveAboutTab('opensource')}
-            >
-              Open Source Contributions
-            </button>
-
-            <button
               className={`tab-button ${activeAboutTab === 'engineering' ? 'active' : ''}`}
               onClick={() => setActiveAboutTab('engineering')}
             >
@@ -110,7 +501,7 @@ function MainContent() {
               className={`tab-button ${activeAboutTab === 'professional' ? 'active' : ''}`}
               onClick={() => setActiveAboutTab('professional')}
             >
-              Professional
+              Management and Leadership
             </button>
 
             <button
@@ -125,100 +516,72 @@ function MainContent() {
           <div id="about-content">
             {activeAboutTab === 'professional' && (
               <div className="about-panel">
-                <h2>Professional</h2>
-                <p>
-                  I am a full-stack developer and Master of Science in Computer Science candidate
-                  with a background in biology and biotechnology.
+                <h2>Management and Leadership</h2>
+                <p className="engineering-subtitle">
+                  Leadership and operational strengths that support delivery, execution, and team alignment.
                 </p>
-                <p>
-                  I build applications that combine clean code with real-world functionality,
-                  from APIs to interactive frontends.
-                </p>
+                <div className="engineering-dropdowns">
+                  {managementLeadership.map((group) => (
+                    <details className="engineering-dropdown" key={group.category}>
+                      <summary>{group.category}</summary>
+                      <ul className="engineering-list">
+                        {group.skills.map((skill) => (
+                          <li key={skill}>{skill}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  ))}
+                </div>
               </div>
             )}
 
             {activeAboutTab === 'personal' && (
               <div className="about-panel">
                 <h2>Personal</h2>
-                <p>
-                  When I’m not coding, I enjoy outdoor photography, hiking, and spending time with family.
-                </p>
-                <p>
-                  Gaming and competitive fitness also help me stay creative and disciplined.
-                </p>
-                <img src={parrot} alt="Parrot in nature" />
               </div>
             )}
 
             {activeAboutTab === 'technologies' && (
               <div className="about-panel">
                 <h2>Applied Technologies</h2>
-                <div className="tech-grid">
-                  <div className="tech-icon-wrapper">
-                    <PythonLogo className="tech-stack" />
-                    <span className="tech-label">Python</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <JavaScriptLogo className="tech-stack" />
-                    <span className="tech-label">JavaScript</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <CSSLogo className="tech-stack" />
-                    <span className="tech-label">CSS</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <HTML5Logo className="tech-stack" />
-                    <span className="tech-label">HTML5</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <ReactLogo className="tech-stack" />
-                    <span className="tech-label">React</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <FlaskLogo className="tech-stack" />
-                    <span className="tech-label">Flask</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <GitLogo className="tech-stack" />
-                    <span className="tech-label">Git</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <GitHubLogo className="tech-stack" />
-                    <span className="tech-label">GitHub</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <GitHubPagesLogo className="tech-stack" />
-                    <span className="tech-label">GitHub Pages</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <LeetCodeLogo className="tech-stack" />
-                    <span className="tech-label">LeetCode</span>
-                  </div>
-                  <div className="tech-icon-wrapper">
-                    <ArcGISLogo className="tech-stack" />
-                    <span className="tech-label">ArcGIS</span>
-                  </div>
+                <div className="tech-groups-grid">
+                  {technologyGroups.map((group) => (
+                    <section className="tech-group" key={group.category}>
+                      <h3 className="tech-group-title">{group.category}</h3>
+                      <div className="tech-grid">
+                        {group.items.map((item) => (
+                          <div className="tech-icon-wrapper" key={item.label} style={{ '--tech-color': item.color }}>
+                            <div className="tech-icon-badge">
+                              <item.Icon className="tech-stack" />
+                            </div>
+                            <span className="tech-label">{item.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  ))}
                 </div>
-              </div>
-            )}
-
-            {activeAboutTab === 'opensource' && (
-              <div className="about-panel">
-                <h2>Open Source Contributions</h2>
-                <p>
-                  I contribute to projects that improve developer workflows and accessibility.
-                  Open source is a powerful way to learn and collaborate.
-                </p>
               </div>
             )}
 
             {activeAboutTab === 'engineering' && (
               <div className="about-panel">
                 <h2>Engineering Foundations</h2>
-                <p>
-                  My engineering approach focuses on problem-solving, maintainability,
-                  and delivering meaningful solutions.
+                <p className="engineering-subtitle">
+                  Organized by area for quick review of architecture, backend, frontend, and delivery skills.
                 </p>
+                <div className="engineering-dropdowns">
+                  {engineeringFoundations.map((group) => (
+                    <details className="engineering-dropdown" key={group.category}>
+                      <summary>{group.category}</summary>
+                      <ul className="engineering-list">
+                        {group.skills.map((skill) => (
+                          <li key={skill}>{skill}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -226,120 +589,115 @@ function MainContent() {
 
         <div className='section-spacer' />
 
-        {/* PROJECTS SECTION WITH TABS */}}
+        {/* PROJECTS SECTION WITH TABS */}
         <section id="projects-section">
           <div id='about-logo'>Projects</div>
-
-          {/* PROJECT TAB BUTTONS */}
-          <div id="project-tabs">
-            <button
-              className={`tab-button ${activeProjectTab === 'banking' ? 'active' : ''}`}
-              onClick={() => setActiveProjectTab('banking')}
-            >
-              Banking App
-            </button>
-
-            <button
-              className={`tab-button ${activeProjectTab === 'pokemon' ? 'active' : ''}`}
-              onClick={() => setActiveProjectTab('pokemon')}
-            >
-              Pokémon Tracker
-            </button>
-
-            <button
-              className={`tab-button ${activeProjectTab === 'battleboats' ? 'active' : ''}`}
-              onClick={() => setActiveProjectTab('battleboats')}
-            >
-              Battle Boats & Tools
-            </button>
-          </div>
-
-          {/* PROJECT CONTENT */}
-          <div id="project-content">
-
-  {activeProjectTab === 'banking' && (
-    <div className="project-panel">
-      <h3>CLI Banking App</h3>
-      <p className='Project-desc'>
-        A command-line banking system built in Python with account management and transactions.
-      </p>
-
-      <img src={bank1} alt="Banking app screenshot" />
-      <img src={bank2} alt="Banking app screenshot" />
-
-      <button
-        className="hero-button project-action"
-        onClick={() => window.open('https://github.com/Daveparisi8/bank-app', '_blank')}
-      >
-        View Banking App Repository
-      </button>
-    </div>
-  )}
-
-  {activeProjectTab === 'pokemon' && (
-    <div className="project-panel">
-      <h3>Pokémon Catch Tracker</h3>
-      <p className='Project-desc'>
-        A full-stack app for tracking caught Pokémon with persistent state.
-      </p>
-
-      <img src={pkmnlogin} alt="Pokémon login screen" />
-      <img src={pkmnpage} alt="Pokémon tracker screen" />
-
-      <button
-        className="hero-button project-action"
-        onClick={() => window.open('https://github.com/Daveparisi8/Pokemontracker', '_blank')}
-      >
-        View Pokémon Repository
-      </button>
-    </div>
-  )}
-
-  {activeProjectTab === 'battleboats' && (
-    <div className="project-panel">
-      <h3>Battle Boats & CLI Tools</h3>
-
-      <p className='Project-desc'>
-        A terminal-based Battleship game and additional Python CLI utilities.
-      </p>
-
-      <div id='Battleship-pictures'>
-        <img src={bs1} alt="Battleship start" />
-        <img src={bs2} alt="Battleship gameplay" />
-        <img src={bs3} alt="Battleship end" />
-      </div>
-
-      <button
-        className="hero-button project-action"
-        onClick={() => window.open('https://github.com/Daveparisi8/battleship', '_blank')}
-      >
-        View Battle Boats Repository
-      </button>
-
-      <h3>CLI Text Editor</h3>
-      <p className='Project-desc'>
-        A command-line text editor with search and editing capabilities.
-      </p>
-
-      <button
-        className="hero-button project-action"
-        onClick={() => window.open('https://github.com/Daveparisi8/text-editor', '_blank')}
-      >
-        View Text Editor Repository
-      </button>
-    </div>
-  )}
-
-</div>
         </section>
 
         <div className='section-spacer' />
 
-        {/* RESUME */}}
+        {/* RESUME */}
         <section id="resume-section">
-          <div id='about-logo'>Live Resume</div>
+          <div id='about-logo'>Education and Work History</div>
           <div id='resume'>
-            <h1>Resume Coming Soon</h1>
+            <div className="resume-shell">
+              <p className="resume-intro">Click a section to expand resume details.</p>
+              <div className="resume-dropdowns">
+                {resumeSections.map((section) => (
+                  <details className="resume-dropdown" key={section.category}>
+                    <summary>{section.category}</summary>
+                    <div className="resume-section-content">
+                      {section.items.map((entry) => (
+                        <article className="resume-entry" key={`${entry.school || entry.company}-${entry.date}`}>
+                          {entry.school && (
+                            <>
+                              <div className="resume-entry-header">
+                                <h3>{entry.school}</h3>
+                                <div className="resume-entry-meta">
+                                  {entry.location && <span className="resume-entry-location">{entry.location}</span>}
+                                  <span>{entry.date}</span>
+                                </div>
+                              </div>
+                              <p className="resume-degree">{entry.degree}</p>
+                              {entry.concentration && <p className="resume-concentration">{entry.concentration}</p>}
+                              {entry.courses && (
+                                <>
+                                  <details className="resume-courses-dropdown">
+                                    <summary>MSCS Relevant Courses</summary>
+                                    <ul className="resume-course-list">
+                                      {entry.courses.map((course) => (
+                                        <li key={course}>{course}</li>
+                                      ))}
+                                    </ul>
+                                  </details>
+                                </>
+                              )}
+                              {entry.undergraduateHighlights && (
+                                <details className="resume-courses-dropdown">
+                                  <summary>Undergraduate Research and Leadership</summary>
+                                  <div className="resume-highlight-list">
+                                    {entry.undergraduateHighlights.map((highlight) => (
+                                      <div className="resume-highlight-item" key={`${highlight.title}-${highlight.timeframe}`}>
+                                        <p className="resume-highlight-title">
+                                          {highlight.title} / {highlight.institution} / {highlight.timeframe}
+                                        </p>
+                                        <p>{highlight.description}</p>
+                                        {highlight.presentations && (
+                                          <>
+                                            <p className="resume-subheading">Presented Findings At</p>
+                                            <ul className="resume-course-list">
+                                              {highlight.presentations.map((event) => (
+                                                <li key={event}>{event}</li>
+                                              ))}
+                                            </ul>
+                                          </>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </details>
+                              )}
+                            </>
+                          )}
+
+                          {entry.company && (
+                            <>
+                              <div className="resume-entry-header">
+                                <h3>{entry.company}</h3>
+                                <div className="resume-entry-meta">
+                                  {entry.location && <span className="resume-entry-location">{entry.location}</span>}
+                                  <span>{entry.date}</span>
+                                </div>
+                              </div>
+                              <p className="resume-degree">{entry.title}</p>
+                              <details className="resume-courses-dropdown">
+                                <summary>Responsibilities</summary>
+                                <ul className="resume-course-list resume-work-list">
+                                  {entry.highlights.map((item) => (
+                                    <li key={item}>{item}</li>
+                                  ))}
+                                </ul>
+                              </details>
+                            </>
+                          )}
+
+                          {entry.certification && (
+                            <>
+                              <div className="resume-entry-header">
+                                <h3>{entry.certification}</h3>
+                                <div className="resume-entry-meta">
+                                  <span>{entry.date}</span>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -349,7 +707,7 @@ function MainContent() {
         <section id="blog-section">
           <div id='about-logo'>Blog</div>
           <div id='blog'>
-            <BlogSection />
+            <BlogSection onTrackLinkClick={onTrackLinkClick} />
           </div>
         </section>
 

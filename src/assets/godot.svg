@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="godotTitle">
+  <title id="godotTitle">Godot</title>
+  <circle cx="60" cy="60" r="56" fill="#4e95d8" />
+  <circle cx="40" cy="44" r="8" fill="#ffffff" />
+  <circle cx="80" cy="44" r="8" fill="#ffffff" />
+  <circle cx="40" cy="44" r="3" fill="#1c2a39" />
+  <circle cx="80" cy="44" r="3" fill="#1c2a39" />
+  <rect x="30" y="70" width="60" height="12" rx="6" fill="#1c2a39" />
+  <path d="M55 52l-6 10h12z" fill="#1c2a39" />
+  <path d="M20 30l12-10m68 10L88 20" stroke="#1c2a39" stroke-width="6" stroke-linecap="round" />
+</svg>
