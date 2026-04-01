@@ -46,6 +46,8 @@ services:
         value: "6543"
       - key: DB_USER
         value: postgres.npvjfxreqalfekhcjiug
+      - key: DATABASE_URL
+        sync: false
       - key: DB_PASSWORD
         sync: false
       - key: DB_NAME
