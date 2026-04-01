@@ -1,0 +1,13 @@
+/* Auth form helpers */
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.auth-box label {
+    font-size: 0.9rem;
+    color: #cfcfcf;
+    margin: 2px 0 4px;
+}

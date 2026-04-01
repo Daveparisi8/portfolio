@@ -30,6 +30,7 @@ Projects/Pokedex/json/
 Projects/CrossFitApp/.venv/
 Projects/CrossFitApp/**/__pycache__/
 Projects/CrossFitApp/**/node_modules/
+Projects/CrossFitApp/**/back-end/env
 
 npm-debug.log*
 yarn-debug.log*
