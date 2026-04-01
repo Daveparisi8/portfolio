@@ -260,7 +260,7 @@ function MainContent({ viewMode, onTrackLinkClick }) {
       title: 'Pokedex (React + FastAPI)',
       subtitle: 'Full-stack Pokedex application with React frontend, Python/FastAPI backend, auth endpoints, and live Pokemon data workflows.',
       stack: ['React', 'FastAPI', 'Python', 'REST API', 'PokeAPI'],
-      demoUrl: process.env.REACT_APP_POKEDEX_DEMO_URL || '',
+      demoUrl: process.env.REACT_APP_POKEDEX_DEMO_URL || 'https://pokedex-frontend-ejys.onrender.com',
       demoTitle: 'Pokedex Production Demo',
       repoUrl: 'https://github.com/Daveparisi8/pkmn',
       repoLabel: 'View Pokedex Repository',

@@ -16,7 +16,10 @@ from auth_service import AuthService
 
 
 USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
-POKEDEX_FILE = os.path.join(os.path.dirname(__file__), "..", "holdover", "pokedex.json")
+POKEDEX_FILE_CANDIDATES = [
+	os.path.join(os.path.dirname(__file__), "pokedex.json"),
+	os.path.join(os.path.dirname(__file__), "..", "holdover", "pokedex.json"),
+]
 auth_service = AuthService(USERS_FILE)
 LOCATION_AREA_LIST_URL = "https://pokeapi.co/api/v2/location-area?limit=2000"
 LOCATION_AREA_LIST_CACHE = None
@@ -29,7 +32,22 @@ def _parse_cors_origins() -> list[str]:
 	origins_raw = os.environ.get("CORS_ORIGINS", "")
 	if origins_raw.strip():
 		return [origin.strip() for origin in origins_raw.split(",") if origin.strip()]
-	return ["http://localhost:3000", "http://127.0.0.1:3000"]
+	return [
+		"http://localhost:3000",
+		"http://127.0.0.1:3000",
+		"https://pokedex-frontend-ejys.onrender.com",
+	]
+
+
+def _load_pokedex_entries() -> list[dict]:
+	for file_path in POKEDEX_FILE_CANDIDATES:
+		if not os.path.exists(file_path):
+			continue
+		with open(file_path, "r", encoding="utf-8") as file:
+			data = json.load(file)
+		if isinstance(data, list):
+			return data
+	return []
 
 
 def _fetch_json(url: str):
@@ -177,6 +195,7 @@ def create_app() -> FastAPI:
 	app.add_middleware(
 		CORSMiddleware,
 		allow_origins=allowed_origins,
+		allow_origin_regex=r"https://pokedex-frontend(-[a-z0-9]+)?\.onrender\.com",
 		allow_credentials=True,
 		allow_methods=["*"],
 		allow_headers=["*"],
@@ -205,8 +224,9 @@ def create_app() -> FastAPI:
 
 	@app.get("/pokedex")
 	def pokedex() -> dict:
-		with open(POKEDEX_FILE, "r", encoding="utf-8") as file:
-			data = json.load(file)
+		data = _load_pokedex_entries()
+		if not data:
+			raise HTTPException(status_code=503, detail="Pokedex data unavailable")
 		return {"count": len(data), "pokemon": data}
 
 	@app.get("/availability")
