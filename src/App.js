@@ -21,54 +21,32 @@ const mapKeyEventFromLink = (linkId, label, url, mode) => {
     destination: url,
   };
 
-  if (typeof url === 'string' && url.startsWith('mailto:')) {
-    return {
-      eventName: 'generate_lead',
-      params: {
-        ...baseParams,
-        method: 'email',
-      },
-    };
-  }
-
-  if (typeof linkId === 'string' && linkId.startsWith('blog-post-')) {
-    return {
-      eventName: 'view_item',
-      params: {
-        ...baseParams,
-        item_id: linkId,
-        item_name: label,
-        item_category: 'blog_post',
-      },
-    };
-  }
-
-  if (typeof linkId === 'string' && linkId.includes('project-')) {
+  if (typeof linkId === 'string' && linkId.startsWith('project-expand-')) {
     return {
       eventName: 'select_content',
       params: {
         ...baseParams,
-        content_type: 'project',
+        content_type: 'project_expand',
       },
     };
   }
 
-  if (typeof linkId === 'string' && linkId.startsWith('hero-')) {
+  if (typeof linkId === 'string' && linkId.startsWith('resume-section-')) {
     return {
       eventName: 'select_content',
       params: {
         ...baseParams,
-        content_type: 'navigation',
+        content_type: 'resume_interaction',
       },
     };
   }
 
-  if (typeof linkId === 'string' && linkId.startsWith('header-')) {
+  if (typeof linkId === 'string' && linkId.startsWith('about-tab-')) {
     return {
       eventName: 'select_content',
       params: {
         ...baseParams,
-        content_type: 'social',
+        content_type: 'about_tab_interaction',
       },
     };
   }
@@ -92,11 +70,6 @@ function App() {
 
     trackGaEvent('view_mode_selected', {
       mode: 'portfolio-review',
-    });
-
-    trackGaEvent('select_content', {
-      content_type: 'view_mode',
-      item_name: 'portfolio-review',
     });
 
     fetch(withApiBase('/api/analytics/visit'), {
@@ -143,11 +116,6 @@ function App() {
       mode,
     });
 
-    trackGaEvent('select_content', {
-      content_type: 'view_mode',
-      item_name: mode,
-    });
-
     if (mode === 'administrator') {
       setGateStep('admin-auth');
       return;
@@ -189,10 +157,6 @@ function App() {
 
       trackGaEvent('admin_login_success', {
         mode: 'administrator',
-      });
-      trackGaEvent('login', {
-        method: 'password',
-        user_role: 'administrator',
       });
       setViewMode('administrator');
     } catch {

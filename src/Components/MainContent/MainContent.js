@@ -437,6 +437,34 @@ function MainContent({ viewMode, onTrackLinkClick }) {
     window.open(url, '_blank');
   };
 
+  const slugify = (value) =>
+    String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+  const handleAboutTabSelect = (tabKey, tabLabel) => {
+    setActiveAboutTab(tabKey);
+    track(`about-tab-${tabKey}`, `About Tab: ${tabLabel}`, '#about-section');
+  };
+
+  const handleProjectToggle = (event, project) => {
+    if (!event.currentTarget.open) {
+      return;
+    }
+
+    track(`project-expand-${project.linkId}`, `Project Expanded: ${project.title}`, '#projects-section');
+  };
+
+  const handleResumeSectionToggle = (event, sectionCategory) => {
+    if (!event.currentTarget.open) {
+      return;
+    }
+
+    const sectionId = slugify(sectionCategory);
+    track(`resume-section-${sectionId}`, `Resume Section: ${sectionCategory}`, '#resume-section');
+  };
+
   return (
     <div>
       <SpaceBackground />
@@ -515,28 +543,28 @@ function MainContent({ viewMode, onTrackLinkClick }) {
           <div id="about-tabs">
             <button
               className={`tab-button ${activeAboutTab === 'technologies' ? 'active' : ''}`}
-              onClick={() => setActiveAboutTab('technologies')}
+              onClick={() => handleAboutTabSelect('technologies', 'Applied Technologies')}
             >
               Applied Technologies
             </button>
 
             <button
               className={`tab-button ${activeAboutTab === 'engineering' ? 'active' : ''}`}
-              onClick={() => setActiveAboutTab('engineering')}
+              onClick={() => handleAboutTabSelect('engineering', 'Engineering Foundations')}
             >
               Engineering Foundations
             </button>
 
             <button
               className={`tab-button ${activeAboutTab === 'professional' ? 'active' : ''}`}
-              onClick={() => setActiveAboutTab('professional')}
+              onClick={() => handleAboutTabSelect('professional', 'Management and Leadership')}
             >
               Management and Leadership
             </button>
 
             <button
               className={`tab-button ${activeAboutTab === 'personal' ? 'active' : ''}`}
-              onClick={() => setActiveAboutTab('personal')}
+              onClick={() => handleAboutTabSelect('personal', 'Personal')}
             >
               Personal
             </button>
@@ -625,7 +653,7 @@ function MainContent({ viewMode, onTrackLinkClick }) {
           <div id="project-content">
             <div className="projects-grid">
               {projects.map((project) => (
-                <details className="project-dropdown" key={project.title}>
+                <details className="project-dropdown" key={project.title} onToggle={(event) => handleProjectToggle(event, project)}>
                   <summary>{project.title}</summary>
                   <div className="project-card project-card-featured">
                     <p className="Project-desc">{project.subtitle}</p>
@@ -689,7 +717,7 @@ function MainContent({ viewMode, onTrackLinkClick }) {
               <p className="resume-intro">Click a section to expand resume details.</p>
               <div className="resume-dropdowns">
                 {resumeSections.map((section) => (
-                  <details className="resume-dropdown" key={section.category}>
+                  <details className="resume-dropdown" key={section.category} onToggle={(event) => handleResumeSectionToggle(event, section.category)}>
                     <summary>{section.category}</summary>
                     <div className="resume-section-content">
                       {section.items.map((entry) => (
