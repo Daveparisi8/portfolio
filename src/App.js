@@ -4,6 +4,9 @@ import Header from './Components/Header/Header'
 import MainContent from './Components/MainContent/MainContent'
 import AdminDashboard from './Components/Admin/AdminDashboard';
 
+const API_BASE_URL = (process.env.REACT_APP_API_URL || '').replace(/\/$/, '');
+const withApiBase = (path) => `${API_BASE_URL}${path}`;
+
 
 function App() {
   const [viewMode, setViewMode] = useState(null);
@@ -18,7 +21,7 @@ function App() {
       return;
     }
 
-    fetch('/api/analytics/visit', {
+    fetch(withApiBase('/api/analytics/visit'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +34,7 @@ function App() {
   }, [viewMode]);
 
   const trackLinkClick = (linkId, label, url) => {
-    fetch('/api/analytics/link-click', {
+    fetch(withApiBase('/api/analytics/link-click'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +61,7 @@ function App() {
     setIsAuthenticating(true);
 
     try {
-      const response = await fetch('/api/admin/login', {
+      const response = await fetch(withApiBase('/api/admin/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

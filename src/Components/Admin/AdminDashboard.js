@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './AdminDashboard.css';
 
+const API_BASE_URL = (process.env.REACT_APP_API_URL || '').replace(/\/$/, '');
+const withApiBase = (path) => `${API_BASE_URL}${path}`;
+
 function AdminDashboard() {
   const [stats, setStats] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +14,7 @@ function AdminDashboard() {
     setError('');
 
     try {
-      const response = await fetch('/api/admin/analytics', {
+      const response = await fetch(withApiBase('/api/admin/analytics'), {
         method: 'GET',
         credentials: 'include',
       });

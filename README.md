@@ -28,6 +28,7 @@ Before running, configure `server/.env` (or copy from `server/.env.example`) wit
 Optional frontend env var (for live project demo embed):
 
 - `REACT_APP_POKEDEX_DEMO_URL`
+- `REACT_APP_API_URL` (set this when frontend and API are on different hosts)
 
 For local development, run both services in separate terminals:
 
