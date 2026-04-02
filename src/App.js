@@ -13,6 +13,69 @@ const trackGaEvent = (eventName, params = {}) => {
   }
 };
 
+const mapKeyEventFromLink = (linkId, label, url, mode) => {
+  const baseParams = {
+    mode,
+    link_id: linkId,
+    link_label: label,
+    destination: url,
+  };
+
+  if (typeof url === 'string' && url.startsWith('mailto:')) {
+    return {
+      eventName: 'generate_lead',
+      params: {
+        ...baseParams,
+        method: 'email',
+      },
+    };
+  }
+
+  if (typeof linkId === 'string' && linkId.startsWith('blog-post-')) {
+    return {
+      eventName: 'view_item',
+      params: {
+        ...baseParams,
+        item_id: linkId,
+        item_name: label,
+        item_category: 'blog_post',
+      },
+    };
+  }
+
+  if (typeof linkId === 'string' && linkId.includes('project-')) {
+    return {
+      eventName: 'select_content',
+      params: {
+        ...baseParams,
+        content_type: 'project',
+      },
+    };
+  }
+
+  if (typeof linkId === 'string' && linkId.startsWith('hero-')) {
+    return {
+      eventName: 'select_content',
+      params: {
+        ...baseParams,
+        content_type: 'navigation',
+      },
+    };
+  }
+
+  if (typeof linkId === 'string' && linkId.startsWith('header-')) {
+    return {
+      eventName: 'select_content',
+      params: {
+        ...baseParams,
+        content_type: 'social',
+      },
+    };
+  }
+
+  return null;
+};
+
 
 function App() {
   const [viewMode, setViewMode] = useState(null);
@@ -31,6 +94,11 @@ function App() {
       mode: 'portfolio-review',
     });
 
+    trackGaEvent('select_content', {
+      content_type: 'view_mode',
+      item_name: 'portfolio-review',
+    });
+
     fetch(withApiBase('/api/analytics/visit'), {
       method: 'POST',
       headers: {
@@ -44,12 +112,19 @@ function App() {
   }, [viewMode]);
 
   const trackLinkClick = (linkId, label, url) => {
+    const mode = viewMode || 'not-selected';
+
     trackGaEvent('portfolio_link_click', {
       link_id: linkId,
       link_label: label,
       destination: url,
-      mode: viewMode || 'not-selected',
+      mode,
     });
+
+    const keyEvent = mapKeyEventFromLink(linkId, label, url, mode);
+    if (keyEvent) {
+      trackGaEvent(keyEvent.eventName, keyEvent.params);
+    }
 
     fetch(withApiBase('/api/analytics/link-click'), {
       method: 'POST',
@@ -66,6 +141,11 @@ function App() {
   const handleModeSelect = (mode) => {
     trackGaEvent('mode_option_clicked', {
       mode,
+    });
+
+    trackGaEvent('select_content', {
+      content_type: 'view_mode',
+      item_name: mode,
     });
 
     if (mode === 'administrator') {
@@ -109,6 +189,10 @@ function App() {
 
       trackGaEvent('admin_login_success', {
         mode: 'administrator',
+      });
+      trackGaEvent('login', {
+        method: 'password',
+        user_role: 'administrator',
       });
       setViewMode('administrator');
     } catch {
