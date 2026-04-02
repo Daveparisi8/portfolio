@@ -340,6 +340,17 @@ function MainContent({ viewMode, onTrackLinkClick }) {
       category: 'Work Experience',
       items: [
         {
+          company: 'Merrimack College',
+          location: 'North Andover, MA',
+          title: 'Computer Science Tutor (MSCS Program)',
+          date: 'Current',
+          highlights: [
+            'Tutored graduate Computer Science students in core software engineering and programming concepts.',
+            'Provided one-on-one and small-group support for algorithms, debugging, and assignment problem-solving.',
+            'Guided students through practical coding workflows, including project organization, version control, and testing habits.',
+          ],
+        },
+        {
           company: 'Cambridge Isotope Laboratories',
           location: 'Andover, MA',
           title: 'Documentation Manager',
