@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="nativeInstrumentsTitle">
+  <title id="nativeInstrumentsTitle">Native Instruments</title>
+  <rect x="10" y="10" width="100" height="100" rx="18" fill="#111111" />
+  <path d="M36 36h10v48H36zm38 0h10v48H74zM46 36l28 48h-12L34 36z" fill="#ffffff" />
+</svg>

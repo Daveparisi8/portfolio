@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="mysqlTitle">
+  <title id="mysqlTitle">MySQL</title>
+  <circle cx="60" cy="60" r="56" fill="#00618a" />
+  <ellipse cx="60" cy="48" rx="30" ry="14" fill="#ffffff" opacity="0.95" />
+  <path d="M30 48v24c0 7 13 13 30 13s30-6 30-13V48" fill="none" stroke="#ffffff" stroke-width="8" />
+  <path d="M43 53c4 3 10 5 17 5s13-2 17-5" fill="none" stroke="#00618a" stroke-width="3" />
+  <text x="60" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">SQL</text>
+</svg>

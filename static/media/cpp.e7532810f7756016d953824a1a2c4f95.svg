@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="cppTitle">
+  <title id="cppTitle">C++</title>
+  <polygon points="60,8 104,34 104,86 60,112 16,86 16,34" fill="#00599c" />
+  <text x="56" y="69" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#ffffff">C</text>
+  <text x="83" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">+</text>
+  <text x="83" y="76" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">+</text>
+</svg>
