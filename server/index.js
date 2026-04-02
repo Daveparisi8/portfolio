@@ -11,6 +11,9 @@ require('dotenv').config({ path: 'server/.env' });
 const app = express();
 const port = Number(process.env.PORT || 4000);
 const isProduction = process.env.NODE_ENV === 'production';
+const shouldTrustProxy =
+  process.env.TRUST_PROXY === 'true' ||
+  (isProduction && process.env.TRUST_PROXY !== 'false');
 
 const adminEmail = process.env.ADMIN_EMAIL;
 const adminPassword = process.env.ADMIN_PASSWORD;
@@ -29,6 +32,10 @@ const DEFAULT_TRACKED_LINKS = {
 
 if (!adminEmail || !adminPassword || !jwtSecret) {
   throw new Error('Missing required server environment variables. Check server/.env and ensure ADMIN_EMAIL, ADMIN_PASSWORD, and ADMIN_JWT_SECRET are set.');
+}
+
+if (shouldTrustProxy) {
+  app.set('trust proxy', 1);
 }
 
 app.use(express.json());

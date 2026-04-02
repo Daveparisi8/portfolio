@@ -22,6 +22,10 @@ function BlogSection({ onTrackLinkClick }) {
   function openPost(meta) {
     setLoading(true);
     setError(null);
+    if (typeof onTrackLinkClick === 'function') {
+      onTrackLinkClick(`blog-post-${meta.slug}`, `Blog Post: ${meta.title}`, `/posts/${meta.slug}.md`);
+    }
+
     fetch(`${process.env.PUBLIC_URL}/posts/${meta.slug}.md`)
       .then((res) => {
         if (!res.ok) throw new Error('Post not found.');

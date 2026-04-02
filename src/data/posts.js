@@ -1,4 +1,6 @@
 // Blog post metadata.
+
+
 // To add a new post:
 //   1. Add an entry to this array.
 //   2. Create a matching file at public/posts/{slug}.md

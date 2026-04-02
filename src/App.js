@@ -7,6 +7,12 @@ import AdminDashboard from './Components/Admin/AdminDashboard';
 const API_BASE_URL = (process.env.REACT_APP_API_URL || '').replace(/\/$/, '');
 const withApiBase = (path) => `${API_BASE_URL}${path}`;
 
+const trackGaEvent = (eventName, params = {}) => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+};
+
 
 function App() {
   const [viewMode, setViewMode] = useState(null);
@@ -21,6 +27,10 @@ function App() {
       return;
     }
 
+    trackGaEvent('view_mode_selected', {
+      mode: 'portfolio-review',
+    });
+
     fetch(withApiBase('/api/analytics/visit'), {
       method: 'POST',
       headers: {
@@ -34,6 +44,13 @@ function App() {
   }, [viewMode]);
 
   const trackLinkClick = (linkId, label, url) => {
+    trackGaEvent('portfolio_link_click', {
+      link_id: linkId,
+      link_label: label,
+      destination: url,
+      mode: viewMode || 'not-selected',
+    });
+
     fetch(withApiBase('/api/analytics/link-click'), {
       method: 'POST',
       headers: {
@@ -47,6 +64,10 @@ function App() {
   };
 
   const handleModeSelect = (mode) => {
+    trackGaEvent('mode_option_clicked', {
+      mode,
+    });
+
     if (mode === 'administrator') {
       setGateStep('admin-auth');
       return;
@@ -59,6 +80,10 @@ function App() {
     event.preventDefault();
     setAuthError('');
     setIsAuthenticating(true);
+
+    trackGaEvent('admin_login_attempt', {
+      email_domain: emailInput.includes('@') ? emailInput.split('@')[1] : 'unknown',
+    });
 
     try {
       const response = await fetch(withApiBase('/api/admin/login'), {
@@ -76,12 +101,21 @@ function App() {
       if (!response.ok) {
         const responseBody = await response.json().catch(() => null);
         setAuthError(responseBody?.message || 'Invalid administrator credentials. Please try again.');
+        trackGaEvent('admin_login_failed', {
+          reason: 'invalid_credentials',
+        });
         return;
       }
 
+      trackGaEvent('admin_login_success', {
+        mode: 'administrator',
+      });
       setViewMode('administrator');
     } catch {
       setAuthError('Authentication service is unavailable. Please try again.');
+      trackGaEvent('admin_login_failed', {
+        reason: 'service_unavailable',
+      });
     } finally {
       setIsAuthenticating(false);
     }
