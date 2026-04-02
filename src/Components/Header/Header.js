@@ -27,7 +27,7 @@ function Header({ viewMode, onTrackLinkClick }) {
             <i className="fab fa-github"></i>
           </a>
           <a
-            href="https://www.linkedin.com/in/ParisiDave"
+            href="https://www.linkedin.com/in/dave-parisi"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
