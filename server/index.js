@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
+const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -18,6 +19,13 @@ const shouldTrustProxy =
 const adminEmail = process.env.ADMIN_EMAIL;
 const adminPassword = process.env.ADMIN_PASSWORD;
 const jwtSecret = process.env.ADMIN_JWT_SECRET;
+const contactToEmail = process.env.CONTACT_TO_EMAIL || 'contact@dave-parisi.com';
+const smtpHost = process.env.SMTP_HOST;
+const smtpPort = Number(process.env.SMTP_PORT || 587);
+const smtpSecure = process.env.SMTP_SECURE === 'true';
+const smtpUser = process.env.SMTP_USER;
+const smtpPass = process.env.SMTP_PASS;
+const smtpFrom = process.env.SMTP_FROM || smtpUser;
 const analyticsFilePath = path.join(__dirname, 'data', 'analytics.json');
 const DEFAULT_TRACKED_LINKS = {
   'header-github': {
@@ -56,6 +64,27 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
   message: { message: 'Too many login attempts. Please try again later.' },
 });
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: 'Too many contact requests. Please try again later.' },
+});
+
+const contactTransport =
+  smtpHost && smtpUser && smtpPass
+    ? nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpSecure,
+        auth: {
+          user: smtpUser,
+          pass: smtpPass,
+        },
+      })
+    : null;
 
 function loadAnalytics() {
   try {
@@ -178,6 +207,62 @@ app.post('/api/analytics/link-click', (req, res) => {
   saveAnalytics(analytics);
 
   return res.status(200).json({ tracked: true });
+});
+
+app.post('/api/contact', contactLimiter, async (req, res) => {
+  const { name, email, subject, message } = req.body || {};
+
+  if (!contactTransport || !smtpFrom) {
+    return res.status(503).json({
+      message: 'Contact service is not configured. Please email contact@dave-parisi.com directly.',
+    });
+  }
+
+  if (typeof name !== 'string' || !name.trim()) {
+    return res.status(400).json({ message: 'Name is required.' });
+  }
+
+  if (typeof email !== 'string' || !email.trim()) {
+    return res.status(400).json({ message: 'Email is required.' });
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return res.status(400).json({ message: 'A valid email address is required.' });
+  }
+
+  if (typeof message !== 'string' || !message.trim()) {
+    return res.status(400).json({ message: 'Message is required.' });
+  }
+
+  const safeName = name.trim().slice(0, 120);
+  const safeEmail = email.trim().slice(0, 255);
+  const safeSubject = typeof subject === 'string' && subject.trim()
+    ? subject.trim().replace(/[\r\n]+/g, ' ').slice(0, 180)
+    : 'Portfolio contact request';
+  const safeMessage = message.trim().slice(0, 5000);
+
+  try {
+    await contactTransport.sendMail({
+      from: smtpFrom,
+      to: contactToEmail,
+      replyTo: `${safeName} <${safeEmail}>`,
+      subject: `[Portfolio Contact] ${safeSubject}`,
+      text: [
+        'New portfolio contact form submission',
+        '',
+        `Name: ${safeName}`,
+        `Email: ${safeEmail}`,
+        `Subject: ${safeSubject}`,
+        '',
+        'Message:',
+        safeMessage,
+      ].join('\n'),
+    });
+
+    return res.status(200).json({ sent: true });
+  } catch {
+    return res.status(502).json({ message: 'Unable to send message right now. Please try again later.' });
+  }
 });
 
 app.post('/api/admin/login', loginLimiter, (req, res) => {

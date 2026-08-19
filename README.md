@@ -25,6 +25,16 @@ Before running, configure `server/.env` (or copy from `server/.env.example`) wit
 - `ADMIN_PASSWORD` 
 - `ADMIN_JWT_SECRET`
 
+For the contact form email delivery, also configure:
+
+- `CONTACT_TO_EMAIL` (defaults to `contact@dave-parisi.com`)
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_SECURE`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM`
+
 Optional frontend env var (for live project demo embed):
 
 - `REACT_APP_POKEDEX_DEMO_URL`
@@ -49,6 +59,7 @@ API routes:
 
 - `POST /api/analytics/visit`
 - `POST /api/analytics/link-click`
+- `POST /api/contact`
 - `GET /api/admin/analytics` (requires admin session)
 
 ### `npm test`
