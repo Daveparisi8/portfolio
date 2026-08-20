@@ -1,12 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.01cda7b0.css",
-    "main.js": "/static/js/main.083f6a2b.js",
+    "main.css": "/static/css/main.2d90992f.css",
+    "main.js": "/static/js/main.63e09643.js",
     "static/js/453.a7d99afe.chunk.js": "/static/js/453.a7d99afe.chunk.js",
-    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.ce9a3fa740bd60b4ac3b.woff2",
-    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.f276979f97f1cf375d23.woff2",
-    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.cfbad32c79d9dda6af4a.woff2",
-    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.296da06936a3373940c8.woff2",
     "static/media/githubpages.svg": "/static/media/githubpages.3b0aa33b0165c4733ab91135458d1538.svg",
     "static/media/react.svg": "/static/media/react.8e63d418a6421cc2662e234ac8af7313.svg",
     "index.html": "/index.html",
@@ -22,22 +18,16 @@
     "static/media/mysql.svg": "/static/media/mysql.a69a847622bb3ea9d0c4d3997c8a991d.svg",
     "static/media/render.svg": "/static/media/render.1dc59dbabd1b418cf2b243f15d99b025.svg",
     "static/media/cpp.svg": "/static/media/cpp.e7532810f7756016d953824a1a2c4f95.svg",
-    "static/media/exess.svg": "/static/media/exess.0b475ebdbe0f316c0e298bdb129a7479.svg",
-    "static/media/d365fo.svg": "/static/media/d365fo.e290329c304e4435cddbe3d429bc80a7.svg",
     "static/media/java.svg": "/static/media/java.f1c927c854a9946c100f2aa0c3cb3122.svg",
     "static/media/gitlab.svg": "/static/media/gitlab.991105799a173d251328dd50cf28d2ac.svg",
-    "static/media/protools.svg": "/static/media/protools.7b97a85c7116bf800fb1fb9bc38c6b66.svg",
-    "static/media/nativeinstruments.svg": "/static/media/nativeinstruments.60eda79e491f7d69fc42c85c34688a3f.svg",
     "static/media/nodejs.svg": "/static/media/nodejs.e2b2f1265742e6146df57da597362b37.svg",
-    "static/media/reaper.svg": "/static/media/reaper.460819a284a2066cec8d56efc9b08595.svg",
     "static/media/html5.svg": "/static/media/html5.8e6289ed1eb0b9f348a463db8fa3e38c.svg",
-    "static/media/navision.svg": "/static/media/navision.de1cca3ecddd88f4f4040e8ef1618197.svg",
-    "main.01cda7b0.css.map": "/static/css/main.01cda7b0.css.map",
-    "main.083f6a2b.js.map": "/static/js/main.083f6a2b.js.map",
+    "main.2d90992f.css.map": "/static/css/main.2d90992f.css.map",
+    "main.63e09643.js.map": "/static/js/main.63e09643.js.map",
     "453.a7d99afe.chunk.js.map": "/static/js/453.a7d99afe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.01cda7b0.css",
-    "static/js/main.083f6a2b.js"
+    "static/css/main.2d90992f.css",
+    "static/js/main.63e09643.js"
   ]
 }
